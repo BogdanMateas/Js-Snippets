@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // storing the name which is introduced via prompt into a var
+
+        var name = prompt("What is your name?");
+
+        // A.Capitalize the first letter
+
+        // a.isolate the first character
+
+        var firstChar = name.slice(0, 1);
+
+        // b.capitalize the firstChar
+
+        var upperCaseFirstChar = firstChar.toUpperCase()
+
+        // c.isolate the rest of the name 
+
+        var restOfName = name.slice(1, name.length)
+
+        // d. lowercase all the letters excluding the first one
+
+        restOfName = restOfName.toLowerCase()
+
+
+        // d.concatanate the first character with the rest of the name
+
+        var capitalizedName = upperCaseFirstChar + restOfName;
+
+        // B. greeting the capitalized name 
+
+        alert('Hello,' + capitalizedName)
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>
