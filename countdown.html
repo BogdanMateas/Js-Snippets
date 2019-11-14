@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
+    <title>CountDown</title>
+    <style>
+      body {
+        font-family: "Orbitron", sans-serif;
+        background: black;
+        padding-top: 200px;
+      }
+
+      h1,
+      p {
+        text-align: center;
+        color: white;
+      }
+      p {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Countdown untill next year :</h1>
+    <p></p>
+
+    <script>
+      // initializing the lets
+      var myDate = {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+
+      setInterval(function countDown() {
+        let currentDate = new Date();
+        let futureDate = new Date(new Date().getFullYear() + 1, 0, 1);
+        // get total seconds between the times
+        let delta = Math.abs(futureDate - currentDate) / 1000;
+
+        // calculate (and subtract) whole days
+        let days = Math.floor(delta / 86400);
+        delta -= days * 86400;
+        myDate.days = days + " days";
+
+        // calculate (and subtract) whole hours
+        let hours = Math.floor(delta / 3600) % 24;
+        delta -= hours * 3600;
+        myDate.hours = hours + " hours";
+
+        // calculate (and subtract) whole minutes
+        let minutes = Math.floor(delta / 60) % 60;
+        delta -= minutes * 60;
+        myDate.minutes = minutes + " minutes";
+
+        // what's left is seconds
+        let seconds = Math.floor(delta % 60); // in theory the modulus is not required
+        myDate.seconds = seconds + " seconds";
+
+        var countDown = document.querySelector("p");
+        countDown.innerHTML = Object.values(myDate).join(" ");
+      }, 1000);
+    </script>
+  </body>
+</html>
