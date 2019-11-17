@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div>
+        <input data-input type="text"><select name="" id="selectInput">
+        </select></input> =
+        <input data-output type="text"><select name="" id="selectOutput">
+        </select></input>
+    </div>
+
+
+    <script>
+        const inputBox = document.querySelector('[data-input]')
+        const outputBox = document.querySelector('[data-output]')
+        const selectInput = document.getElementById('selectInput')
+        const selectOutput = document.getElementById('selectOutput')
+
+
+        const promise = fetch(
+            "http://data.fixer.io/api/latest?access_key=92d88a1b184ce1189620bf64e92b0af1&format=1")
+        promise.then(response => {
+            return response.json();
+
+        }).then(result => {
+            const arrI = Object.entries(result.rates)
+            const arrII = Object.entries(result.rates)
+
+
+
+            arrI.forEach(opt => {
+                const optionsLeft = document.createElement("option")
+                optionsLeft.text = opt[0]
+                optionsLeft.value = opt[1]
+                selectInput.add(optionsLeft)
+            })
+            arrII.forEach(option => {
+                const optionsRight = document.createElement("option")
+                optionsRight.text = option[0]
+                optionsRight.value = option[1]
+                selectOutput.add(optionsRight)
+            })
+
+            function convertion(x) {
+                return x / `${selectInput.value}` * `${selectOutput.value}`;
+
+            }
+            inputBox.addEventListener('keyup', myfunct)
+            selectOutput.addEventListener('click', myfunct)
+            selectInput.addEventListener('click', myfunct)
+
+            function myfunct() {
+                const cur = inputBox.value;
+                const curToConvertTo = convertion(cur);
+                outputBox.value = curToConvertTo;
+                console.log(`${selectOutput.value}`)
+            };
+
+        }).catch(err => {
+            console.log('Smth went wrong')
+        })
+    </script>
+</body>
+
+</html>
