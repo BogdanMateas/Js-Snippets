@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Text Typing</title>
+</head>
+
+<body>
+    <h1 id="typing"></h1>
+    <script>
+
+        
+        const typing = document.querySelector('#typing');
+        let i = 0;
+        let turn = 0;
+        const data = ['Hello World', 'Best Example', 'Challenge Done'];
+        const speed = 200;
+
+        setTimeout(typer, speed);
+
+        function typer() {
+            if (i < data[turn].length) {
+                typing.innerHTML += data[turn].charAt(i);
+                // console.log(data[turn].charAt(i));
+                i++;
+                setTimeout(typer, speed);
+            } else {
+                setTimeout(erase, speed + 100);
+            }
+        }
+
+        function erase() {
+            if (i >= 0) {
+                let str = data[turn].toString().substring(0, i);
+                typing.innerHTML = str;
+                i--;
+                setTimeout(erase, speed - 100);
+            } else {
+                turn++;
+                if (turn >= data.length)
+                    turn = 0;
+                setTimeout(typer, speed);
+            }
+        }
+    </script>
+</body>
+
+</html>
