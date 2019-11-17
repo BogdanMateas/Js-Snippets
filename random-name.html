@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>Random names</title>
+    <div class="container">
+
+        <h1>Generate A Random Name</h1>
+        <div id="random-name"></div>
+        <button id="generate">Generate Another</button>
+
+    </div>
+</head>
+
+<body>
+    <script>
+        //instantiate the arrays of first names and last names
+        const firstNames = ["Hope", "Launa", "Katherine", "Walker", "Moses", "Tayna", "Rosia", "Yahaira", "Tommy",
+            "Elwanda", "Clorinda", "Sheron", "Kayla", "Clementina", "Rene", "Rex", "Kathy", "Latoya", "Shirleen",
+            "Shoshana"
+        ];
+
+        const lastNames = ["Chauncey", "Houchins", "Lama", "Frasca", "Houston", "Ake", "Shankles", "Cantor", "Mizell",
+            "Cleland", "Maltby", "Tirrell", "Cary", "Mace", "Horta", "Carlile", "Deegan", "Torrez", "Humfeld",
+            "Helgeson"
+        ];
+        // randomizing a number not bigger than arrays length
+
+        const getRandomNumber = (max) => Math.floor(Math.random() * max);
+
+        // getting the random indexes of the arrays and concatenate them
+        const getRandomName = () =>
+            `${firstNames[getRandomNumber(firstNames.length)]} ${lastNames[getRandomNumber(lastNames.length)]}`;
+
+        //setting the random full name in the DOM
+        const setRandomName = () => {
+            document.getElementById('random-name').innerText = getRandomName();
+        }
+
+        //generate it when the button is clicked
+        document.getElementById('generate')
+            .addEventListener('click', setRandomName);
+        //calling the function 
+        setRandomName();
+    </script>
+</body>
+
+</html>
